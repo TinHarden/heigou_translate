@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+ff7d3c5fc2db06951258838635ca1012 CMakeFiles/heigou_translate_autogen
+a34773b0ff2788fc173845b2085cb40a heigou_translate_autogen/timestamp

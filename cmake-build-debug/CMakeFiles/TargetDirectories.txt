@@ -1,0 +1,5 @@
+/home/heiyt/CLionProjects/heigou_translate/cmake-build-debug/CMakeFiles/heigou_translate.dir
+/home/heiyt/CLionProjects/heigou_translate/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/heiyt/CLionProjects/heigou_translate/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/heiyt/CLionProjects/heigou_translate/cmake-build-debug/CMakeFiles/heigou_translate_autogen_timestamp_deps.dir
+/home/heiyt/CLionProjects/heigou_translate/cmake-build-debug/CMakeFiles/heigou_translate_autogen.dir
