@@ -1,4 +1,10 @@
-​**​/cmake-build-debug/
-**/cmake-build-release/
+# 忽略调试和发布构建目录
+cmake-build-debug/
+cmake-build-release/
+
+# 忽略 CLion 的项目配置文件
 .idea/
-**/translate/user_youdao_key.h
+
+# 忽略包含敏感信息的翻译 API 密钥文件
+translate/user_youdao_key.h
+
