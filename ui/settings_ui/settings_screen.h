@@ -1,11 +1,9 @@
-//
-// Created by heiyt on 25-4-4.
-//
 
 #ifndef SETTINGS_SCREEN_H
 #define SETTINGS_SCREEN_H
 
 #include <QWidget>
+#include <QSettings>
 
 namespace SETTING_UI
 {
@@ -13,7 +11,7 @@ namespace SETTING_UI
     namespace Ui { class settings_screen; }
     QT_END_NAMESPACE
 
-    class settings_screen : public QWidget {
+    class settings_screen final : public QWidget {
         Q_OBJECT
 
         public:

@@ -4,6 +4,7 @@
 
 #include "youdao_translate.h"
 
+#include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QUrlQuery>
@@ -62,29 +63,37 @@ namespace TRANSLATE
     QString youdao_translate::getTranslationReply(QNetworkReply* reply)
     {
         QString show_words;
-        if (QJsonObject rootObj = QJsonDocument::fromJson(reply->readAll()).object(); rootObj["errorCode"].toString().toInt() == 0)
+        QJsonObject rootObj = QJsonDocument::fromJson(reply->readAll()).object();
+        if (rootObj["errorCode"].toString().toInt() == 0)
         {
-            if (rootObj.contains("translateResults"))
+            QJsonArray translateResults = rootObj["translateResults"].toArray();
+            if (rootObj.contains("translateResults") && !translateResults.isEmpty())
             {
-                if (QJsonArray translateResults = rootObj["translateResults"].toArray(); !translateResults.isEmpty())
+                for (const QJsonValue& result : translateResults)
                 {
-                   for (const QJsonValue& result : translateResults) {
-                       if (QJsonObject obj = result.toObject(); obj.contains("translation") && obj["translation"].isString()) {
-                           show_words += obj["translation"].toString();
-                       }
-                   }
+                    QJsonObject obj = result.toObject();
+                    if (obj.contains("translation") && obj["translation"].isString())
+                    {
+                        show_words += obj["translation"].toString();
+                    }
                 }
-                else
-                {
-                    show_words = "未找到翻译结果";
-                }
+            }
+            else
+            {
+                show_words = "未找到翻译结果";
             }
         }
         else
         {
             show_words = "error";
-            qDebug() << rootObj["errorCode"].toString().toInt();
         }
         return show_words;
+    }
+
+    void youdao_translate::load_youdao_api()
+    {
+        const QSettings settings;
+        appKey = settings.value("APPKEY").toString();
+        appSecret = settings.value("APPSECRET").toString();
     }
 }

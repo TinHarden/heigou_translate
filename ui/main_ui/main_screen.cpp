@@ -1,6 +1,3 @@
-//
-// Created by heiyt on 25-4-7.
-//
 
 // You may need to build the project (run Qt uic code generator) to get "ui_main_screen.h" resolved
 
@@ -18,14 +15,24 @@ namespace MAIN_SCREEN
 
         setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
 
+        // 控件设置
         ui->comboBox->addItem("英语");
         ui->comboBox->addItem("中文");
-
-        _youdao_translate = new TRANSLATE::youdao_translate(this);
-
-        connect(ui->pushButton_translate, &QPushButton::clicked, this, &main_screen::handleTranslation);
+        // 设置快捷键
         shortcut = new QShortcut(QKeySequence("Ctrl+Return"), this);
-        connect(shortcut, &QShortcut::activated, this, &main_screen::handleTranslation);
+        shortcut_close = new QShortcut(QKeySequence("Ctrl+W"), this);
+        // 初始化翻译
+        _youdao_translate = new TRANSLATE::youdao_translate(this);
+        // 信号连接
+        connect(ui->pushButton_translate, &QPushButton::clicked, this, &main_screen::handleTranslation,Qt::QueuedConnection);
+        connect(ui->pushButton_setting,&QPushButton::clicked,this,[this]
+        {
+            settings_screen.show();
+        },Qt::QueuedConnection);
+        connect(shortcut, &QShortcut::activated, this, &main_screen::handleTranslation,Qt::QueuedConnection);
+        connect(shortcut_close, &QShortcut::activated, this, [this]{
+            this->close();
+        },Qt::QueuedConnection);
     }
 
     void main_screen::handleTranslation() const
@@ -38,15 +45,16 @@ namespace MAIN_SCREEN
         }
         const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CHS";
         _youdao_translate->translate(words, to_language);
-        connect(_youdao_translate, &TRANSLATE::youdao_translate::translationFinished, [this](const QString& result)
-        {
-            ui->textBrowser_output->setText(result);
-        });
+        connect(_youdao_translate, &TRANSLATE::youdao_translate::translationFinished, this,
+                [this](const QString& result)
+                {
+                    ui->textBrowser_output->setText(result);
+                });
     }
 
     main_screen::~main_screen()
     {
-        delete ui;
+        delete ui; // 释放ui模块
+        delete _youdao_translate;  // 释放翻译模块内存
     }
 }
-// MAIN_SCREEN
