@@ -11,7 +11,7 @@ namespace GOOGLE_TRANSLATE_CRAWLER {
         Py_Initialize();
         PyRun_SimpleString("import sys");
         PyRun_SimpleString("sys.path.append(\"..\\translate_web_crawler\")");
-        PyObject* pModule = PyImport_ImportModule("example");
+        PyObject* pModule = PyImport_ImportModule("translate_web_crawler");
         PyObject* pFunc = PyObject_GetAttrString(pModule, "hello");
         PyObject_CallFunction(pFunc, nullptr);
         Py_DECREF(pFunc);
