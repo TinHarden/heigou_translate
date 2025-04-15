@@ -1,0 +1,10 @@
+//
+// Created by heiyt on 25-4-16.
+//
+
+#ifndef TRANSLATE_GOOGLE_CRAWLER_H
+#define TRANSLATE_GOOGLE_CRAWLER_H
+
+
+
+#endif //TRANSLATE_GOOGLE_CRAWLER_H
