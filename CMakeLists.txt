@@ -32,7 +32,6 @@ add_executable(heigou_translate
         ui/main_ui/main_screen.ui
         translate/youdao_translate.cpp
         translate/youdao_translate.h
-        translate_crawler/translate_crawler.py
 )
 target_link_libraries(
         heigou_translate

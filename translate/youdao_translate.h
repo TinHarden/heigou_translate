@@ -7,7 +7,6 @@
 
 #include <QNetworkReply>
 #include <QRandomGenerator>
-#include <QSettings>
 #include <QWidget>
 
 namespace TRANSLATE
