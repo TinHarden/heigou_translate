@@ -5,6 +5,7 @@
 #ifndef YOUDAO_TRANSLATE_H
 #define YOUDAO_TRANSLATE_H
 
+#include <QSettings>
 #include <QNetworkReply>
 #include <QRandomGenerator>
 #include <QWidget>

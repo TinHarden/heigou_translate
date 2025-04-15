@@ -8,7 +8,6 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QUrlQuery>
-#include <QSettings>
 
 namespace TRANSLATE
 {
