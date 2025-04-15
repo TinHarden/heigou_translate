@@ -12,9 +12,12 @@ namespace SETTING_UI
 
         connect(ui->pushButton_ok,&QPushButton::clicked,this,[this]
         {
-            QSettings settings;
-            settings.setValue("APPKEY", ui->textEdit_appKEY->toPlainText());
-            settings.setValue("APPSECRET", ui->textEdit_appSECRET->toPlainText());
+            if (!ui->textEdit_appKEY->toPlainText().isEmpty() && !ui->textEdit_appSECRET->toPlainText().isEmpty())
+            {
+                QSettings settings;
+                settings.setValue("APPKEY", ui->textEdit_appKEY->toPlainText());
+                settings.setValue("APPSECRET", ui->textEdit_appSECRET->toPlainText());
+            }
         });
     }
 
