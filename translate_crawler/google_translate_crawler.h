@@ -5,8 +5,6 @@
 #ifndef GOOGLE_TRANSLATE_CRAWLER_H
 #define GOOGLE_TRANSLATE_CRAWLER_H
 
-#include "Python.h"
-
 namespace GOOGLE_TRANSLATE_CRAWLER {
 
 class google_translate_crawler {
