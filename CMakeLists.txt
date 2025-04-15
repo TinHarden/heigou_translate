@@ -18,20 +18,17 @@ find_package(Python 3.11 REQUIRED COMPONENTS Interpreter Development)
 include_directories(
         translate
         ui/main_ui
-        ui/settings_ui
+        translate_crawler
         ${Python_INCLUDE_DIRS}
 )
 
 add_executable(heigou_translate
         main.cpp
-        ui/settings_ui/settings_screen.cpp
-        ui/settings_ui/settings_screen.h
-        ui/settings_ui/settings_screen.ui
         ui/main_ui/main_screen.cpp
         ui/main_ui/main_screen.h
         ui/main_ui/main_screen.ui
-        translate/youdao_translate.cpp
-        translate/youdao_translate.h
+        translate_crawler/google_translate_crawler.cpp
+        translate_crawler/google_translate_crawler.h
 )
 target_link_libraries(
         heigou_translate

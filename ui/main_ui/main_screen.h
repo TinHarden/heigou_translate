@@ -5,8 +5,6 @@
 #include <QMainWindow>
 #include <QShortcut>
 
-#include "settings_screen.h"
-
 namespace TRANSLATE
 {
     class youdao_translate;
@@ -28,14 +26,12 @@ namespace MAIN_SCREEN
         Q_OBJECT
 
     public:
-        TRANSLATE::youdao_translate* _youdao_translate{};
         explicit main_screen(QWidget* parent = nullptr);
         void handleTranslation() const;
         ~main_screen() override;
 
     private:
         Ui::main_screen* ui;
-        SETTING_UI::settings_screen settings_screen{};
         QShortcut* shortcut{};
         QShortcut* shortcut_close{};
     };
