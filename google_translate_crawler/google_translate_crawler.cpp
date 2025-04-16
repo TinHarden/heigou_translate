@@ -7,10 +7,10 @@ namespace GOOGLE_TRANSLATE_CRAWLER {
     {
         Py_Initialize();
         PyRun_SimpleString("import sys");
-        PyRun_SimpleString("sys.path.append(\"..\\google_translate_crawler\")"); // È·±£Ä£¿éÂ·¾¶ÕýÈ·
+        PyRun_SimpleString("sys.path.append(\"..\\google_translate_crawler\")"); // È·ï¿½ï¿½Ä£ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½È·
         PyObject* pModule = PyImport_ImportModule("translate_web_crawler");
         PyObject* pClass = PyObject_GetAttrString(pModule, "WebTranslator");
-        PyObject* pInstance = PyObject_CallObject(pClass, nullptr); // ÎÞ²ÎÊý¹¹Ôì
+        PyObject* pInstance = PyObject_CallObject(pClass, nullptr); // ï¿½Þ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         PyObject* pArgs = PyTuple_New(3);
         PyTuple_SetItem(pArgs, 0, PyUnicode_FromString(words.toStdString().c_str()));
         PyTuple_SetItem(pArgs, 1, PyUnicode_FromString("auto"));
