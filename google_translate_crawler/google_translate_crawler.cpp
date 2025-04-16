@@ -1,6 +1,5 @@
 #include "Python.h"
 #include "google_translate_crawler.h"
-#include <QDebug>
 
 namespace GOOGLE_TRANSLATE_CRAWLER {
     void google_translate_crawler::get_translated_words(const QString& words, const QString& target_lang)
@@ -22,7 +21,7 @@ namespace GOOGLE_TRANSLATE_CRAWLER {
             PyTuple_SetItem(pArgs, 0, PyUnicode_FromString(words_cstr));
             PyTuple_SetItem(pArgs, 1, PyUnicode_FromString("auto"));
             PyTuple_SetItem(pArgs, 2, PyUnicode_FromString(lang_cstr));
-            pResult = PyObject_CallMethod(pInstance, "google_translate", "(O)", pArgs);
+            pResult = PyObject_CallMethod(pInstance, "google_translate", nullptr, pArgs);
             if (PyUnicode_Check(pResult)) {
                 const char* translated = PyUnicode_AsUTF8(pResult);
                 emit translationFinished(QString::fromUtf8(translated));
@@ -30,7 +29,6 @@ namespace GOOGLE_TRANSLATE_CRAWLER {
                 emit translationFinished("error");
             }
         } catch (const std::exception& e) {
-            qWarning() << "翻译错误:" << e.what();
             emit translationFinished("error");
         }
         Py_XDECREF(pResult);
