@@ -21,11 +21,11 @@ namespace MAIN_SCREEN
         shortcut = new QShortcut(QKeySequence("Ctrl+Return"), this);
         shortcut_close = new QShortcut(QKeySequence("Ctrl+W"), this);
         // 信号连接
-        connect(ui->pushButton_translate, &QPushButton::clicked, this, &main_screen::handleTranslation,Qt::QueuedConnection);
-        connect(shortcut, &QShortcut::activated, this, &main_screen::handleTranslation,Qt::QueuedConnection);
+        connect(ui->pushButton_translate, &QPushButton::clicked, this, &main_screen::handleTranslation);
+        connect(shortcut, &QShortcut::activated, this, &main_screen::handleTranslation);
         connect(shortcut_close, &QShortcut::activated, this, [this]{
             this->close();
-        },Qt::QueuedConnection);
+        });
     }
 
     void main_screen::handleTranslation() const
