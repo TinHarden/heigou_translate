@@ -49,5 +49,6 @@ namespace MAIN_SCREEN
     main_screen::~main_screen()
     {
         delete ui; // 释放ui模块
+        delete translation;
     }
 }

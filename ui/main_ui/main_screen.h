@@ -15,18 +15,15 @@ namespace TRANSLATE
 namespace MAIN_SCREEN
 {
     QT_BEGIN_NAMESPACE
-
     namespace Ui
     {
         class main_screen;
     }
-
     QT_END_NAMESPACE
 
     class main_screen final : public QMainWindow
     {
         Q_OBJECT
-
     public:
         explicit main_screen(QWidget* parent = nullptr);
         void handleTranslation() const;

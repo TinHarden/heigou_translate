@@ -12,7 +12,6 @@ find_package(Qt6
         REQUIRED)
 
 set(CMAKE_PREFIX_PATH "/home/heiyt/Qt/6.9.0/gcc_64")
-
 find_package(Python3 3.12 REQUIRED COMPONENTS Interpreter Development)
 
 include_directories(

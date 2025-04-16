@@ -29,15 +29,3 @@ class WebTranslator:
             return "error"
         except Exception as e:
             return f"error：{str(e)}"
-# if __name__ == '__main__':
-#     translator = WebTranslator()
-#     while True:
-#         text = input("请输入要翻译的文本（输入q退出）: ")
-#         if text.lower() == 'q':
-#             break
-#         result = translator.google_translate(
-#             words=text,
-#             source_lang='auto',
-#             target_lang='auto',
-#         )
-#         print(f"翻译结果：{result}\n" + "-" * 50)
