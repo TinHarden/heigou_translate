@@ -13,7 +13,6 @@ find_package(Qt6
 
 set(CMAKE_PREFIX_PATH "/home/heiyt/Qt/6.9.0/gcc_64")
 
-set(Python3_EXECUTABLE "/usr/bin/python3")
 find_package(Python3 3.12 REQUIRED COMPONENTS Interpreter Development)
 
 include_directories(
@@ -27,8 +26,8 @@ add_executable(heigou_translate
         ui/main_ui/main_screen.cpp
         ui/main_ui/main_screen.h
         ui/main_ui/main_screen.ui
-        translate_crawler/google_translate_crawler.cpp
-        translate_crawler/google_translate_crawler.h
+        google_translate_crawler/google_translate_crawler.cpp
+        google_translate_crawler/google_translate_crawler.h
 )
 target_link_libraries(
         heigou_translate

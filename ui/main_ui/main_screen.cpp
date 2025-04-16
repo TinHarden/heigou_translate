@@ -10,17 +10,14 @@ namespace MAIN_SCREEN
         QMainWindow(parent), ui(new Ui::main_screen)
     {
         ui->setupUi(this);
-
+        // 界面永远位于上方
         setWindowFlags(Qt::Window | Qt::WindowStaysOnTopHint);
-
         // 控件设置
         ui->comboBox->addItem("英语");
         ui->comboBox->addItem("中文");
         // 设置快捷键
         shortcut = new QShortcut(QKeySequence("Ctrl+Return"), this);
         shortcut_close = new QShortcut(QKeySequence("Ctrl+W"), this);
-        // 初始化翻译
-        // _youdao_translate = new TRANSLATE::youdao_translate(this);
         // 信号连接
         connect(ui->pushButton_translate, &QPushButton::clicked, this, &main_screen::handleTranslation,Qt::QueuedConnection);
         connect(shortcut, &QShortcut::activated, this, &main_screen::handleTranslation,Qt::QueuedConnection);
@@ -40,12 +37,13 @@ namespace MAIN_SCREEN
         const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CHS";
 
         // 翻译并修改显示的内容
-        // _youdao_translate->translate(words, to_language);
-        // connect(_youdao_translate, &TRANSLATE::youdao_translate::translationFinished, this,
-        //         [this](const QString& result)
-        //         {
-        //             ui->textBrowser_output->setText(result);
-        //         });
+        _youdao_translate->translate(words, to_language);
+        connect(_youdao_translate, &TRANSLATE::youdao_translate::translationFinished, this,
+                [this](const QString& result)
+                {
+                    ui->textBrowser_output->setText(result);
+                });
+
     }
 
     main_screen::~main_screen()
