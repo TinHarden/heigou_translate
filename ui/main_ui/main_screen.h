@@ -5,7 +5,7 @@
 #include <QMainWindow>
 #include <QShortcut>
 
-#include "../../google_translate_crawler/google_translate_crawler.h"
+#include "google_translate_crawler.h"
 
 namespace TRANSLATE
 {

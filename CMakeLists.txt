@@ -8,7 +8,7 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6
         COMPONENTS
-        Core Gui Widgets Network
+        Core Gui Widgets
         REQUIRED)
 
 set(CMAKE_PREFIX_PATH "/home/heiyt/Qt/6.9.0/gcc_64")
@@ -16,9 +16,8 @@ set(CMAKE_PREFIX_PATH "/home/heiyt/Qt/6.9.0/gcc_64")
 find_package(Python3 3.12 REQUIRED COMPONENTS Interpreter Development)
 
 include_directories(
-        translate
         ui/main_ui
-        translate_crawler
+        google_translate_crawler
 )
 
 add_executable(heigou_translate
@@ -34,6 +33,5 @@ target_link_libraries(
         Qt::Core
         Qt::Gui
         Qt::Widgets
-        Qt::Network
         Python3::Python
 )
