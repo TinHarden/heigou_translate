@@ -11,9 +11,9 @@ namespace GOOGLE_TRANSLATE_CRAWLER {
     {
         Q_OBJECT
     public:
-        void google_translate_crawler::get_translated_words(const QString& words, const QString& target_lang);
-        signals:
-            void translationFinished(const QString& result);
+        void get_translated_words(const QString& words, const QString& target_lang);
+    signals:
+        void translationFinished(const QString& result);
     };
 } // GOOGLE_TRANSLATE_CRAWLER
 

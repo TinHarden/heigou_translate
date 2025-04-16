@@ -26,13 +26,13 @@ class WebTranslator:
             if response.status_code == 200:
                 rs = response.json()
                 return rs[0][0][0]
-            return "翻译失败：响应格式异常"
+            return "error"
         except Exception as e:
-            return f"翻译失败：{str(e)}"
+            return f"error锛歿str(e)}"
 # if __name__ == '__main__':
 #     translator = WebTranslator()
 #     while True:
-#         text = input("请输入要翻译的文本（输入q退出）: ")
+#         text = input("璇疯緭鍏ヨ缈昏瘧鐨勬枃鏈紙杈撳叆q閫�鍑猴級: ")
 #         if text.lower() == 'q':
 #             break
 #         result = translator.google_translate(
@@ -40,4 +40,4 @@ class WebTranslator:
 #             source_lang='auto',
 #             target_lang='auto',
 #         )
-#         print(f"翻译结果：{result}\n" + "-" * 50)
+#         print(f"缈昏瘧缁撴灉锛歿result}\n" + "-" * 50)
