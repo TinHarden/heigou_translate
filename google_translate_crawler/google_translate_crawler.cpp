@@ -31,8 +31,7 @@ namespace GOOGLE_TRANSLATE_CRAWLER {
         );
         if (pResult && PyUnicode_Check(pResult))
         {
-            const char* translated = PyUnicode_AsUTF8(pResult);
-            emit translationFinished(QString::fromUtf8(translated));
+            emit translationFinished(QString::fromUtf8(PyUnicode_AsUTF8(pResult)));
         }
         else
         {
