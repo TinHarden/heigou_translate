@@ -11,6 +11,8 @@ namespace GOOGLE_TRANSLATE_CRAWLER {
     {
         Q_OBJECT
     public:
+        explicit google_translate_crawler(QObject *parent = nullptr);
+        ~google_translate_crawler() override;
         void get_translated_words(const QString& words, const QString& target_lang);
     signals:
         void translationFinished(const QString& result);
