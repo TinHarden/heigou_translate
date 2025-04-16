@@ -1,6 +1,3 @@
-//
-// Created by heiyt on 25-4-16.
-//
 
 #ifndef GOOGLE_TRANSLATE_CRAWLER_H
 #define GOOGLE_TRANSLATE_CRAWLER_H
