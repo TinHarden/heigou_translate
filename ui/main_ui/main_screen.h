@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QShortcut>
 
+#include "../../google_translate_crawler/google_translate_crawler.h"
+
 namespace TRANSLATE
 {
     class youdao_translate;
@@ -34,6 +36,7 @@ namespace MAIN_SCREEN
         Ui::main_screen* ui;
         QShortcut* shortcut{};
         QShortcut* shortcut_close{};
+        GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler* translation;
     };
 }
 // MAIN_SCREEN

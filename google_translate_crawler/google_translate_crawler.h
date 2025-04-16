@@ -7,13 +7,13 @@
 #include <QObject>
 
 namespace GOOGLE_TRANSLATE_CRAWLER {
-    class google_translate_crawler : public QObject
+    class google_translate_crawler final : public QObject
     {
         Q_OBJECT
     public:
-        static void google_translate_crawler::get_translated_words(const QString& words, const QString& target_lang);
+        void google_translate_crawler::get_translated_words(const QString& words, const QString& target_lang);
         signals:
-           static void translationFinished(const QString& result);
+            void translationFinished(const QString& result);
     };
 } // GOOGLE_TRANSLATE_CRAWLER
 
