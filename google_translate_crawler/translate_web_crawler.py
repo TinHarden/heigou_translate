@@ -26,13 +26,13 @@ class WebTranslator:
             if response.status_code == 200:
                 rs = response.json()
                 return rs[0][0][0]
-            return "ç¿»è¯‘å¤±è´¥ï¼šå“åº”æ ¼å¼å¼‚å¸¸"
+            return "·­ÒëÊ§°Ü£ºÏìÓ¦¸ñÊ½Òì³£"
         except Exception as e:
-            return f"ç¿»è¯‘å¤±è´¥ï¼š{str(e)}"
+            return f"·­ÒëÊ§°Ü£º{str(e)}"
 # if __name__ == '__main__':
 #     translator = WebTranslator()
 #     while True:
-#         text = input("è¯·è¾“å…¥è¦ç¿»è¯‘çš„æ–‡æœ¬ï¼ˆè¾“å…¥qé€€å‡ºï¼‰: ")
+#         text = input("ÇëÊäÈëÒª·­ÒëµÄÎÄ±¾£¨ÊäÈëqÍË³ö£©: ")
 #         if text.lower() == 'q':
 #             break
 #         result = translator.google_translate(
@@ -40,4 +40,4 @@ class WebTranslator:
 #             source_lang='auto',
 #             target_lang='auto',
 #         )
-#         print(f"ç¿»è¯‘ç»“æœï¼š{result}\n" + "-" * 50)
+#         print(f"·­Òë½á¹û£º{result}\n" + "-" * 50)

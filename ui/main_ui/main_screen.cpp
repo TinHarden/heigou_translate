@@ -3,6 +3,7 @@
 
 #include "main_screen.h"
 #include "ui_main_screen.h"
+#include "../../google_translate_crawler/google_translate_crawler.h"
 
 namespace MAIN_SCREEN
 {
@@ -37,7 +38,13 @@ namespace MAIN_SCREEN
         const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CHS";
 
         // 翻译并修改显示的内容
-        _youdao_translate->translate(words, to_language);
+        // _youdao_translate->translate(words, to_language);
+        // connect(_youdao_translate, &TRANSLATE::youdao_translate::translationFinished, this,
+        //         [this](const QString& result)
+        //         {
+        //             ui->textBrowser_output->setText(result);
+        //         });
+        GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler::get_translated_words(words, to_language);
         connect(_youdao_translate, &TRANSLATE::youdao_translate::translationFinished, this,
                 [this](const QString& result)
                 {

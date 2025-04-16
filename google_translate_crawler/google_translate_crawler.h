@@ -4,12 +4,16 @@
 
 #ifndef GOOGLE_TRANSLATE_CRAWLER_H
 #define GOOGLE_TRANSLATE_CRAWLER_H
+#include <QObject>
 
 namespace GOOGLE_TRANSLATE_CRAWLER {
-    class google_translate_crawler
+    class google_translate_crawler : public QObject
     {
-        static void google_translate_crawler::get_translated_words(const char* words, const char* target_lang,
-                                                                   const char* result);
+        Q_OBJECT
+    public:
+        static void google_translate_crawler::get_translated_words(const QString& words, const QString& target_lang);
+        signals:
+           static void translationFinished(const QString& result);
     };
 } // GOOGLE_TRANSLATE_CRAWLER
 
