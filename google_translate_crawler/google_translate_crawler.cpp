@@ -21,13 +21,11 @@ namespace GOOGLE_TRANSLATE_CRAWLER {
     void google_translate_crawler::get_translated_words(const QString& words, const QString& target_lang)
     {
         PyGILState_STATE gil_state = PyGILState_Ensure();
-        const char* words_cstr = words.toUtf8().constData();
-        const char* lang_cstr = target_lang.toUtf8().constData();
         PyObject* pResult = PyObject_CallMethod(
             this->pInstance,
             "google_translate",
             "sss",
-            words_cstr, "auto", lang_cstr
+            words.toUtf8().constData(), "auto", target_lang.toUtf8().constData()
         );
         if (pResult && PyUnicode_Check(pResult))
         {

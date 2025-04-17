@@ -36,7 +36,7 @@ namespace MAIN_SCREEN
             ui->textBrowser_output->setText("请输入待翻译内容");
             return;
         }
-        const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CHS";
+        const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CH";
         // 翻译并修改显示的内容
         translation->get_translated_words(words, to_language);
         connect(translation, &GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler::translationFinished, this,
@@ -48,7 +48,7 @@ namespace MAIN_SCREEN
 
     main_screen::~main_screen()
     {
-        delete ui; // 释放ui模块
+        delete ui;
         delete translation;
     }
 }
