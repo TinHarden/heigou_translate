@@ -4,6 +4,7 @@
 
 #include <QMainWindow>
 #include <QShortcut>
+#include <QProcess>
 
 #include "google_translate_crawler.h"
 
@@ -27,11 +28,13 @@ namespace MAIN_SCREEN
     public:
         explicit main_screen(QWidget* parent = nullptr);
         void handleTranslation() const;
+        void handleTranslation_huaci() const;
         ~main_screen() override;
 
     private:
         Ui::main_screen* ui;
         QShortcut* shortcut{};
+        QShortcut* shortcut_quick_translate{};
         QShortcut* shortcut_close{};
         GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler* translation;
     };

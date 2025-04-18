@@ -19,10 +19,12 @@ namespace MAIN_SCREEN
         translation = new GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler;
         // 设置快捷键
         shortcut = new QShortcut(QKeySequence("Ctrl+Return"), this);
+        shortcut_quick_translate = new QShortcut(QKeySequence("Ctrl+Q"), this);
         shortcut_close = new QShortcut(QKeySequence("Ctrl+W"), this);
         // 信号连接
         connect(ui->pushButton_translate, &QPushButton::clicked, this, &main_screen::handleTranslation);
         connect(shortcut, &QShortcut::activated, this, &main_screen::handleTranslation);
+        connect(shortcut_quick_translate, &QShortcut::activated, this, &main_screen::handleTranslation_huaci);
         connect(shortcut_close, &QShortcut::activated, this, [this]{
             this->close();
         });
@@ -36,6 +38,22 @@ namespace MAIN_SCREEN
             ui->textBrowser_output->setText("请输入待翻译内容");
             return;
         }
+        const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CH";
+        // 翻译并修改显示的内容
+        translation->get_translated_words(words, to_language);
+        connect(translation, &GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler::translationFinished, this,
+                [this](const QString& result)
+                {
+                    ui->textBrowser_output->setText(result);
+                });
+    }
+
+    void main_screen::handleTranslation_huaci() const
+    {
+        QProcess process;
+        process.start("xclip", {"-selection", "primary", "-out"});
+        process.waitForFinished();
+        const QString words = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
         const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CH";
         // 翻译并修改显示的内容
         translation->get_translated_words(words, to_language);
