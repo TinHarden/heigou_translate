@@ -19,12 +19,10 @@ namespace MAIN_SCREEN
         translation = new GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler;
         // 设置快捷键
         shortcut = new QShortcut(QKeySequence("Ctrl+Return"), this);
-        shortcut_quick_translate = new QShortcut(QKeySequence("Ctrl+Q"), this);
         shortcut_close = new QShortcut(QKeySequence("Ctrl+W"), this);
         // 信号连接
         connect(ui->pushButton_translate, &QPushButton::clicked, this, &main_screen::handleTranslation);
         connect(shortcut, &QShortcut::activated, this, &main_screen::handleTranslation);
-        connect(shortcut_quick_translate, &QShortcut::activated, this, &main_screen::handleTranslation_huaci);
         connect(shortcut_close, &QShortcut::activated, this, [this]{
             this->close();
         });

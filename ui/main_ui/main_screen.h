@@ -34,7 +34,6 @@ namespace MAIN_SCREEN
     private:
         Ui::main_screen* ui;
         QShortcut* shortcut{};
-        QShortcut* shortcut_quick_translate{};
         QShortcut* shortcut_close{};
         GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler* translation;
     };
