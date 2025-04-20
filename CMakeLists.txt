@@ -17,6 +17,7 @@ find_package(Python3 3.12 REQUIRED COMPONENTS Interpreter Development)
 include_directories(
         ui/main_ui
         google_translate_crawler
+        background_progress
 )
 
 add_executable(heigou_translate
@@ -26,6 +27,9 @@ add_executable(heigou_translate
         ui/main_ui/main_screen.ui
         google_translate_crawler/google_translate_crawler.cpp
         google_translate_crawler/google_translate_crawler.h
+        background_progress/background_progress.cpp
+        background_progress/background_progress.h
+        background_progress/background_progress.ui
 )
 target_link_libraries(
         heigou_translate

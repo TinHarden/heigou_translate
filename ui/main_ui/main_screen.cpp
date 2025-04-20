@@ -26,7 +26,6 @@ namespace MAIN_SCREEN
         connect(shortcut_close, &QShortcut::activated, this, [this]{
             this->close();
         });
-        // 翻译并修改显示的内容
         connect(translation, &GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler::translationFinished, this,
                 [this](const QString& result)
                 {
@@ -44,22 +43,6 @@ namespace MAIN_SCREEN
         }
         const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CH";
         translation->get_translated_words(words, to_language);
-    }
-
-    void main_screen::handleTranslation_huaci() const
-    {
-        QProcess process;
-        process.start("xclip", {"-selection", "primary", "-out"});
-        process.waitForFinished();
-        const QString words = QString::fromUtf8(process.readAllStandardOutput()).trimmed();
-        const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CH";
-        // 翻译并修改显示的内容
-        translation->get_translated_words(words, to_language);
-        connect(translation, &GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler::translationFinished, this,
-                [this](const QString& result)
-                {
-                    ui->textBrowser_output->setText(result);
-                });
     }
 
     main_screen::~main_screen()
