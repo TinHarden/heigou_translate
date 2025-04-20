@@ -16,7 +16,7 @@ namespace MAIN_SCREEN
         ui->comboBox->addItem("英语");
         ui->comboBox->addItem("中文");
         // 初始化翻译实例
-        translation = new GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler;
+        translation = new GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler();
         // 设置快捷键
         shortcut = new QShortcut(QKeySequence("Ctrl+Return"), this);
         shortcut_close = new QShortcut(QKeySequence("Ctrl+W"), this);
@@ -26,6 +26,12 @@ namespace MAIN_SCREEN
         connect(shortcut_close, &QShortcut::activated, this, [this]{
             this->close();
         });
+        // 翻译并修改显示的内容
+        connect(translation, &GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler::translationFinished, this,
+                [this](const QString& result)
+                {
+                    ui->textBrowser_output->setText(result);
+                });
     }
 
     void main_screen::handleTranslation() const
@@ -37,13 +43,7 @@ namespace MAIN_SCREEN
             return;
         }
         const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CH";
-        // 翻译并修改显示的内容
         translation->get_translated_words(words, to_language);
-        connect(translation, &GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler::translationFinished, this,
-                [this](const QString& result)
-                {
-                    ui->textBrowser_output->setText(result);
-                });
     }
 
     main_screen::~main_screen()
