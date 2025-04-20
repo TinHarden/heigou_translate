@@ -55,7 +55,8 @@ namespace MAIN_SCREEN
         const QString text = clipboard->text().trimmed();
         if (!text.isEmpty())
         {
-            translation->get_translated_words(text, "en");
+            const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CH";
+            translation->get_translated_words(text, to_language);
         }
     }
     main_screen::~main_screen()

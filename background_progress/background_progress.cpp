@@ -19,7 +19,16 @@ namespace BACKGROUND
             this->close();
         });
     }
-
+    bool background_progress::eventFilter_bkgp(QObject *obj, QEvent *event)
+    {
+        if (event->type() == QEvent::MouseButtonPress) {
+            QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+            if (!this->geometry().contains(mouseEvent->globalPos())) {
+                this->close();
+            }
+        }
+        return QWidget::eventFilter(obj, event);
+    }
     background_progress::~background_progress()
     {
         delete ui;

@@ -7,6 +7,7 @@
 
 #include <QWidget>
 #include <QShortcut>
+#include <QMouseEvent>
 #include "google_translate_crawler.h"
 
 namespace BACKGROUND
@@ -25,6 +26,7 @@ namespace BACKGROUND
         Q_OBJECT
     public:
         explicit background_progress(const QString& words, const QPoint& point, QWidget* parent = nullptr);
+        bool eventFilter_bkgp(QObject* obj, QEvent* event);
         ~background_progress() override;
     private:
         Ui::background_progress* ui;
