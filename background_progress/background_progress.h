@@ -5,12 +5,8 @@
 #ifndef BACKGROUND_PROGRESS_H
 #define BACKGROUND_PROGRESS_H
 
-#include <QLabel>
 #include <QWidget>
-#include <QScreen>
-#include <QTimer>
 #include <QShortcut>
-
 #include "google_translate_crawler.h"
 
 namespace BACKGROUND
@@ -28,15 +24,11 @@ namespace BACKGROUND
     {
         Q_OBJECT
     public:
-        explicit background_progress(QWidget* parent = nullptr);
-        void handleTranslation_huaci() const;
+        explicit background_progress(const QString& words, const QPoint& point, QWidget* parent = nullptr);
         ~background_progress() override;
-
     private:
         Ui::background_progress* ui;
-        QLabel* mousePopup;
-        QShortcut* shortcut_huaci{};
-        GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler* translation_huaci;
+        QShortcut* shortcut_close{};
     };
 }// BACKGROUND
 

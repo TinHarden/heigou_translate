@@ -3,6 +3,7 @@
 
 #include "main_screen.h"
 #include "ui_main_screen.h"
+#include "background_progress.h"
 
 namespace MAIN_SCREEN
 {
@@ -15,6 +16,7 @@ namespace MAIN_SCREEN
         // 控件设置
         ui->comboBox->addItem("英语");
         ui->comboBox->addItem("中文");
+        clipboard = QApplication::clipboard();
         // 初始化翻译实例
         translation = new GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler();
         // 设置快捷键
@@ -23,6 +25,7 @@ namespace MAIN_SCREEN
         // 信号连接
         connect(ui->pushButton_translate, &QPushButton::clicked, this, &main_screen::handleTranslation);
         connect(shortcut, &QShortcut::activated, this, &main_screen::handleTranslation);
+        connect(clipboard, &QClipboard::dataChanged, this, &main_screen::handleTranslation_huaci);
         connect(shortcut_close, &QShortcut::activated, this, [this]{
             this->close();
         });
@@ -30,6 +33,9 @@ namespace MAIN_SCREEN
                 [this](const QString& result)
                 {
                     ui->textBrowser_output->setText(result);
+                    QPoint mousePos = QCursor::pos();
+                    toast_window = new BACKGROUND::background_progress(result, mousePos, nullptr);
+                    toast_window->show();
                 });
     }
 
@@ -44,7 +50,14 @@ namespace MAIN_SCREEN
         const QString to_language = (ui->comboBox->currentIndex() == 0) ? "en" : "zh-CH";
         translation->get_translated_words(words, to_language);
     }
-
+    void main_screen::handleTranslation_huaci() const
+    {
+        const QString text = clipboard->text().trimmed();
+        if (!text.isEmpty())
+        {
+            translation->get_translated_words(text, "en");
+        }
+    }
     main_screen::~main_screen()
     {
         delete ui;

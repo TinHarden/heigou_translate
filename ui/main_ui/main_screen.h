@@ -4,8 +4,8 @@
 
 #include <QMainWindow>
 #include <QShortcut>
-#include <QProcess>
-
+#include <QClipboard>
+#include "background_progress.h"
 #include "google_translate_crawler.h"
 
 namespace TRANSLATE
@@ -35,6 +35,8 @@ namespace MAIN_SCREEN
         Ui::main_screen* ui;
         QShortcut* shortcut{};
         QShortcut* shortcut_close{};
+        QClipboard* clipboard;
+        BACKGROUND::background_progress* toast_window;
         GOOGLE_TRANSLATE_CRAWLER::google_translate_crawler* translation;
     };
 }

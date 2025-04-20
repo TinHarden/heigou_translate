@@ -1,6 +1,5 @@
 #include <QApplication>
 #include "main_screen.h"
-#include "background_progress.h"
 
 int main(int argc, char* argv[])
 {
