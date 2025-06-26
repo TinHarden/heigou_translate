@@ -76,7 +76,7 @@ namespace TRANSLATE
             }
             else
             {
-                show_words = "δ�ҵ�������";
+                show_words = "请输入待翻译内容";
             }
         }
         else
