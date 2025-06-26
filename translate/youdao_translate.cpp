@@ -13,7 +13,6 @@ namespace TRANSLATE
 {
     void youdao_translate::translate(const QString& text, const QString& to)
     {
-        // 生成签名参数
         const QString salt = QString::number(QRandomGenerator::global()->generate());
         const QString curtime = QString::number(QDateTime::currentSecsSinceEpoch());
         QString input;
@@ -31,7 +30,6 @@ namespace TRANSLATE
             (appKey + input + salt + curtime + appSecret).toUtf8(),
             QCryptographicHash::Sha256
         ).toHex();
-        // 构建请求参数
         QUrlQuery params;
         params.addQueryItem("q", text);
         params.addQueryItem("from", "auto");
@@ -41,10 +39,8 @@ namespace TRANSLATE
         params.addQueryItem("sign", sign);
         params.addQueryItem("signType", "v3");
         params.addQueryItem("curtime", curtime);
-        // 发送请求
         QNetworkRequest request;
         request.setUrl(QUrl(url + "?" + params.toString()));
-        // 获取返回的数据
         QNetworkReply* reply = manager->get(request);
         connect(reply, &QNetworkReply::finished, [this, reply]
         {
@@ -80,7 +76,7 @@ namespace TRANSLATE
             }
             else
             {
-                show_words = "未找到翻译结果";
+                show_words = "未锟揭碉拷锟斤拷锟斤拷锟斤拷";
             }
         }
         else
